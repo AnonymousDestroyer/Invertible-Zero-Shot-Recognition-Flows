@@ -1,0 +1,12 @@
+epochs:
+  desc: Number of epochs to train over
+  value: 21
+batch_size:
+  desc: Size of each batch
+  value: 10
+lr:
+  desc: Learning rate
+  value: 0.0004
+block_size:
+  desc: Number of blocks
+  value: 5

@@ -27,17 +27,17 @@ class ToyData(Dataset):
         Makes ToyData Example From
         Shen, Yuming, et al. "Invertible zero-shot recognition flows." ECCV. Springer, Cham, 2020.
         """
-        self.cs = torch.tensor([[0, 1], [0, 0], [1, 0]])
-        self.cu = torch.tensor([1, 1])
+        self.cs = torch.tensor([[0., 1.], [0., 0.], [1., 0.]])
+        self.cu = torch.tensor([1., 1.])
         base_dist = dist.Normal(torch.zeros(2), torch.ones(2) / 3)
 
         self.x = []
         for c in self.cs:
             self.x.append(F.pad(input=2 * c - 1 + base_dist.sample((points_per_sample,)),
-                                pad=(2, 0, 0, 0), mode="constant", value=0).reshape(-1, 4))
+                                pad=(0, 2, 0, 0), mode="constant", value=0).reshape(-1, 4))
 
         self.x_unseen = F.pad(input=2 * self.cu - 1 + base_dist.sample((points_per_sample,)),
-                              pad=(2, 0, 0, 0), mode="constant", value=0).reshape(-1, 4)
+                              pad=(0, 2, 0, 0), mode="constant", value=0).reshape(-1, 4)
 
         temp = self.x.copy()
         if show_data:
