@@ -78,30 +78,3 @@ class ActNormBijection(_ActNormBijection):
     def ldj_multiplier(self, x):
         '''Multiplier for ldj'''
         return 1
-
-class ActNormBijectionCloud(_ActNormBijection):
-    '''
-    Activation normalization [1] for inputs on the form (Batch,n_points,input_dim).
-    num_feats = input_dim
-    The bias and scale get initialized using the mean and variance of the
-    first mini-batch. After the init, bias and scale are trainable parameters.
-    References:
-        [1] Glow: Generative Flow with Invertible 1×1 Convolutions,
-            Kingma & Dhariwal, 2018, https://arxiv.org/abs/1807.03039
-    '''
-
-    def register_params(self):
-        '''Register parameters shift and log_scale'''
-        self.register_parameter('shift', nn.Parameter(torch.zeros(1, self.num_features)))
-        self.register_parameter('log_scale', nn.Parameter(torch.zeros(1, self.num_features)))
-
-    def compute_stats(self, x):
-        '''Compute x_mean and x_std'''
-
-        x_mean = einops.reduce(x, 'b n -> () n', 'mean')
-        x_std = einops.rearrange(x, 'b n  ->  () (b ) n').std(axis=1)
-        return x_mean, x_std
-
-    def ldj_multiplier(self, x):
-        '''Multiplier for ldj'''
-        return 1

@@ -32,7 +32,7 @@ from yaml import load as load_yaml
 eps = 1e-8
 
 
-def make_toy_graph(x, epoch, fit=False, show=False, save=False, path="plots/"):
+def make_toy_graph(x, epoch, text='Toy Data', fit=False, show=False, save=False):
     """
     Used to make graphs for groundtruth and generated
     """
@@ -56,7 +56,7 @@ def make_toy_graph(x, epoch, fit=False, show=False, save=False, path="plots/"):
     if show:
         plt.show()
     if save:
-        wandb.log({f'plot_{epoch}.png': plt})
+        wandb.log({f'{text}.png': plt})
     plt.clf()
 
 def sum_except_batch(x, num_dims=1):

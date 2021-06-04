@@ -39,10 +39,10 @@ class ToyData(Dataset):
         self.x_unseen = F.pad(input=2 * self.cu - 1 + base_dist.sample((points_per_sample,)),
                               pad=(0, 2, 0, 0), mode="constant", value=0).reshape(-1, 4)
 
-        temp = self.x.copy()
         if show_data:
+            temp = self.x.copy()
             temp.append(self.x_unseen)
-            make_toy_graph(temp, "test", fit=True, show=True)
+            make_toy_graph(temp, "Toy Data", "Toy Data", fit=False, show=False, save=True)
 
         self.x = torch.stack(self.x).reshape(-1, 4)
         self.y = torch.stack((torch.full((points_per_sample,), 0),

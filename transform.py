@@ -84,13 +84,10 @@ class Flow(Transform):
         Centralizing loss
         """
         centralizing_loss = 0.0
-        #means = torch.stack([data[targets == t].mean(axis=0) for t in targets.unique()])
-        #gens = self.generation(F.pad(cs[targets.unique()], (0, 2)))
-        # F.pad(cs, (0, 2))
-        for idx, c in enumerate(cs):
-            centralizing_loss += torch.norm(self.generation(torch.cat((c, torch.zeros(2))).repeat(2).reshape(-1, 4))[0] -
-                                            data[targets == idx].mean(axis=0))
-        return centralizing_loss
+        means = torch.stack([data[targets == t].mean(axis=0) for t in targets.unique()])
+        gens = self.generation(F.pad(cs[targets.unique()], (0, 2)))
+
+        return torch.norm(gens - means, dim=1).sum()
 
     def mmd_loss(self, data, cu, k=0):
         """
