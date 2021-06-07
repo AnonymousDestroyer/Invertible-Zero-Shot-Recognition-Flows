@@ -81,6 +81,18 @@ def mean_except_batch(x, num_dims=1):
     '''
     return x.reshape(*x.shape[:num_dims], -1).mean(-1)
 
+def reduce_mean_masked(x, mask, axis):
+    x = x * mask.float()
+    m = x.sum(axis=axis) / mask.sum(axis=axis).float()
+    return m
+
+
+def reduce_sum_masked(x, mask, axis):
+    x = x * mask.float()
+    m = x.sum(axis=axis)
+    return m
 
 if __name__ == '__main__':
-    print()
+    x = torch.rand((2, 10, 10))
+    mask = torch.ones(2, 10, 10)
+    reduce_sum_masked(x, mask, axis=1)

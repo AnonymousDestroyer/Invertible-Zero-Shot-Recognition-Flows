@@ -1,0 +1,24 @@
+{
+    "os": "Linux-5.12.6-arch1-1-x86_64-with-arch",
+    "python": "3.7.7",
+    "heartbeatAt": "2021-06-07T08:05:07.739807",
+    "startedAt": "2021-06-07T08:05:06.432961",
+    "docker": null,
+    "gpu": "NVIDIA GeForce RTX 2060",
+    "gpu_count": 1,
+    "cpu_count": 12,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/home/mvalente/docs/msc_ai/thesis/tests/zero_flow/train.py",
+    "codePath": "train.py",
+    "git": {
+        "remote": "https://github.com/miguelvalente/zero_flow.git",
+        "commit": "a11b0e9a0b585958687f4840e468ac906a96885d"
+    },
+    "email": "miguelvalente@protonmail.com",
+    "root": "/home/mvalente/docs/msc_ai/thesis/tests/zero_flow",
+    "host": "prodigy",
+    "username": "mvalente",
+    "executable": "/home/mvalente/.config/anaconda3/envs/torcha/bin/python"
+}

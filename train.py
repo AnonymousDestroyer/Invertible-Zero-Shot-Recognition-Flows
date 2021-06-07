@@ -17,8 +17,9 @@ import torch.optim as optim
 import torch.distributions as dist
 from act_norm import ActNormBijection
 
+# Contains code adapted from https://github.com/SamGalanakis/FlowCompare.git
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-#device = "cpu"
 
 run = wandb.init(project='toy_data_zf', entity='mvalente',
                  config=r'config/base_conf.yaml')
